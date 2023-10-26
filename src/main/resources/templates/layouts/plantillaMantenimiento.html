@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head th:fragment="cabecera">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Jhonatan Fuentes - Administrador</title>
+        <link rel="icon" type="image/x-icon" th:href="@{/assets/Logo-JF-BN.ico}" />
+
+        <style>
+            @font-face {
+            font-family: 'Poppins-Regular';
+            src: url('../fuentes/fonts/poppins/Poppins-Regular.ttf') format(truetype); 
+        }
+        </style>
+
+        <link th:href="@{/administrador_usuarios/css/sb-admin-2.min.css}" rel="stylesheet">
+        <link th:href="@{/css/all.css}" rel="stylesheet" type="text/css">
+        
+    </head>
+
+
+    <body>
+
+        <div id="wrapper">
+            <ul class="navbar-nav sidebar sidebar-dark accordion bg-gradient-dark border-bottom border-bottom-dark" data-bs-theme="dark" id="accordionSidebar" th:fragment="asideLateral">
+
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                    <div class="sidebar-brand-icon">
+                        <img style="max-width: 40px;" th:src="@{/assets/Logo-JF-BN.ico}" alt="..">
+                    </div>
+                    <div class="sidebar-brand-text mx-3">Administrador </div>
+                </a>
+    
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+    
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/admin/}">
+                        <i class="fa-solid fa-user-gear"></i>
+                        <span>Inicio</span></a>
+                </li>
+                
+                
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+    
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Mantener
+                </div>
+    
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" th:href="@{/categoria/}">
+                        <i class="fa-solid fa-code-branch"></i>
+                        <span>Categorias</span>
+                    </a>
+                    <a class="nav-link collapsed" th:href="@{/usuarios/}">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Usuarios</span>
+                    </a>
+                    <a class="nav-link collapsed" th:href="@{/producto/}">
+                        <i class="fa-solid fa-box"></i>
+                        <span>Productos</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <form th:action="@{/logout}" method="post">
+                        <button type="submit" class="boton-logout Estilo_Salir">
+                            <i class="fa-solid fa-door-open"></i>
+                            <span>Salir</span>
+                        </button>
+                    </form>
+                </li>
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+    
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Reportes
+                </div>
+    
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Compras</span>
+                    </a>
+                </li>
+    
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
+    
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle text-white border-0" id="sidebarToggle"><i class="fa-solid fa-chevron-left"></i></button>
+                    
+                </div>
+    
+                <!-- Sidebar Message -->
+                <div class="sidebar-card d-none d-lg-flex">
+                    <div>
+                        Ayuda
+                    </div>
+                </div>
+    
+            </ul>
+            <!-- Final del sidebar -->
+
+            <!--Contenido de wrapper-->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!--Contenido principal-->
+                <div id="content">
+
+                    <!--Navbar-->
+                    <nav class="navbar navbar-expand topbar mb-4 static-top shadow border-bottom border-bottom-dark" th:fragment="navSuperior" data-bs-theme="dark" style="background-color: #292a2e;">
+
+                        <!-- Sidebar Toggle (Topbar) -->
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" style="color: #d09c16;">
+                            <i class="fa fa-bars"></i>
+                        </button>
+    
+                        <!-- Topbar Search -->
+                        <form
+                            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group">
+                                <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..."
+                                    aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn text-white" type="button" style="background-color: #d09c16;">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+    
+                        <!-- Topbar Navbar -->
+                        <ul class="navbar-nav ml-auto">
+    
+                            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                            <li class="nav-item dropdown no-arrow d-sm-none">
+                                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #d09c16;">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </a>
+    
+                                <!-- Dropdown - Messages -->
+                                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" style="background-color: #292a2e;"
+                                    aria-labelledby="searchDropdown">
+                                    <form class="form-inline mr-auto w-100 navbar-search">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control bg-light border-0 small"
+                                                placeholder="Buscar..." aria-label="Search"
+                                                aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn text-white" type="button" style="background-color: #d09c16;">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                
+                            </li>
+    
+    
+                            <div class="topbar-divider d-none d-sm-block"></div>
+    
+                            
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small" sec:authentication="name"></span>
+                                    <img class="img-profile rounded-circle" th:src="@{/assets/imagenes/team/Jhonatan.jpg}">
+                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Profile
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Settings
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Activity Log
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a>
+                                </div>
+                            </li>
+    
+                        </ul>
+    
+                    </nav>
+
+                    <!--CONTENIDO-->
+
+                    <div class="container-fluid px-4">
+
+                        <!--Titulo de la pagina-->
+
+                        <!--4 Cards -->
+                        <div class="row" th:fragment="paneles">
+                            <div class="col-lg-3 col-md-6">
+                                <div class="card text-white mb-3">
+                                    <div class="card-header bg-primary">
+                                        <div class="row">
+                                            <div class="col-sm-5 text-sm-left text-center">
+                                                <i class="fa-solid fa-comments fa-5x"></i>
+                                            </div>
+                                            <div class="col-sm-7 align-middle text-sm-right text-center">
+                                                <div>26</div>
+                                                <div>¡Comentarios!</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#">
+                                        <div class="card-footer text-primary bg-light">
+                                            <div class="row">
+                                                <div class="col-6">Ver detalles</div>
+                                                <div class="col-6 text-right"><i class="fa fa-arrow-circle-right"></i></div>
+                                            </div>
+            
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="card text-white mb-3">
+                                    <div class="card-header bg-success">
+                                        <div class="row">
+                                            <div class="col-sm-5 text-sm-left text-center">
+                                                <i class="fa-solid fa-list-check fa-5x"></i>
+                                            </div>
+                                            <div class="col-sm-7 align-middle text-sm-right text-center">
+                                                <div>12</div>
+                                                <div>Tareas</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#">
+                                        <div class="card-footer text-success bg-light">
+                                            <div class="row">
+                                                <div class="col-6">Ver detalles</div>
+                                                <div class="col-6 text-right"><i class="fa fa-arrow-circle-right"></i></div>
+                                            </div>
+            
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="card text-white mb-3">
+                                    <div class="card-header bg-warning">
+                                        <div class="row">
+                                            <div class="col-sm-5 text-sm-left text-center">
+                                                <i class="fa-solid fa-cart-shopping fa-5x"></i>
+                                            </div>
+                                            <div class="col-sm-7 align-middle text-sm-right text-center">
+                                                <div>124</div>
+                                                <div>Nuevas ordenes</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#">
+                                        <div class="card-footer bg-light text-warning">
+                                            <div class="row">
+                                                <div class="col-6">Ver detalles</div>
+                                                <div class="col-6 text-right"><i class="fa fa-arrow-circle-right"></i></div>
+                                            </div>
+            
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="card text-white mb-3">
+                                    <div class="card-header bg-danger">
+                                        <div class="row">
+                                            <div class="col-sm-5 text-sm-left text-center">
+                                                <i class="fa-solid fa-screwdriver-wrench fa-5x"></i>
+                                            </div>
+                                            <div class="col-sm-7 align-middle text-sm-right text-center">
+                                                <div>13</div>
+                                                <div>Configuración</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#">
+                                        <div class="card-footer bg-light text-danger">
+                                            <div class="row">
+                                                <div class="col-6">Ver detalles</div>
+                                                <div class="col-6 text-right"><i class="fa fa-arrow-circle-right"></i></div>
+                                            </div>
+            
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Registros-->
+
+                        <!--Listado-->
+
+                    </div>
+
+                    <!-- End of Topbar -->
+                </div>
+            </div>
+        </div>
+
+        <div th:fragment="footer">
+
+            <script th:src="@{/administrador_usuarios/js/jquery.min.js}"></script>
+            <script th:src="@{/administrador_usuarios/js/bootstrap.bundle.min.js}"></script>
+            
+            <script th:src="@{/administrador_usuarios/js/sb-admin-2.min.js}"></script>
+            
+            <!-- Custom Theme JavaScript -->
+            <script th:src="@{/js/plugins/all.js}"></script>
+        </div>
+    </body>
+
+</html>
